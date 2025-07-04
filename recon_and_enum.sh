@@ -10,7 +10,7 @@ else
 	echo "Switch user with the command 'su user' and try again"
 	exit 1
 fi	
-sleep 1
+sleep 2
 echo "The phases of ethical hacking --- unified cyber kill chain"
 sleep 1
 echo "Let's start with reconnaissance"
