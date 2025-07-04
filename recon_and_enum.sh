@@ -7,7 +7,7 @@ read login
 if [[ $login == 1 ]]; then
 	echo "Welcome $user"
 else
-	echo "Switch user with the command 'sudo su -' and try again"
+	echo "Switch user with the command 'su user' and try again"
 	exit 1
 fi	
 sleep 1
