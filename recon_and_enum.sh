@@ -1,7 +1,8 @@
 #!/bin/bash
+echo "This web recon runs nikto,sublist3r,nslookup,whois...nmap on the target is optional"
 user=$(whoami)
 echo "Good day,who are you gonna be logged in as today?
-1 - User
+1 - echo '$user'
 2 - root"
 read login
 if [[ $login == 1 ]]; then
@@ -11,49 +12,30 @@ else
 	exit 1
 fi	
 sleep 2
-echo "The phases of ethical hacking --- unified cyber kill chain"
+echo "Let's do some web recon"
+dir=$(cd ~/Desktop && mkdir WEB)
+echo "$dir"
 sleep 1
 echo "Let's start with reconnaissance"
-sleep 2
-echo "Chill bruhva..............."
 sleep 1
-target=$1
-nslookup=$(nslookup $target > nslookup.txt)
-whois=$(whois $target > whois.txt)
-echo "$nslookup" &
-sleep 2
-echo "$whois" &
-sleep 3
-echo "Kindly wait a lil bit,maybe 10sec"
-sleep 6 
-echo "would you like to move on with enumeration? (y/n)?"
+echo "Kindly enter target"
+read target
+nslookup=$(nslookup $target > ~/Desktop/WEB/nslookup.txt)
+whois=$(whois $target >  ~/Desktop/WEB/whois.txt)
+nikto=$(nikto -h $target >  ~/Desktop/WEB/nikto_scan.txt)
+sublister=$(sublist3r -d $target >  ~/Desktop/WEB/sublister.txt)
+echo "this might take a while...................................................."
+echo "$nslookup"
+echo "$whois"
+echo "$nikto"
+echo "$sublister"
+echo "would you like to move on with nmap (y/n)?"
 read enum
 if [[ $enum == "y" ]]; then
-	echo "kindly select your enumeration tool
-	1 - nmap
-	2 - nikto
-	3 - nessus
-	4 - kioptrix"
-	read tool
-	case $tool in
-		1)
-			nmap=$(nmap -A -T4 -p- $1 > nmap.txt &)
-			echo "$nmap"
-			sleep 15
-			;;
-		2)
-			echo "Kindly check out nikto on their platform"	
-			;;
-		3)
-			echo "kindly check out nessus on their platform"
-			;;
-		4)
-			echo "kindly check out nessus on their platform"
-			;;
-	esac
+	nmap=$(nmap -A -T4 -p- $1 >  ~/Desktop/WEB/nmap.txt &)
+	echo "$nmap"
 else
 	echo "Goodbye"
 	exit 1	
 fi
-sleep 4
 exit 1
