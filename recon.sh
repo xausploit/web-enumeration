@@ -24,7 +24,9 @@ nslookup=$(nslookup $target > ~/Desktop/WEB/nslookup.txt)
 whois=$(whois $target >  ~/Desktop/WEB/whois.txt)
 nikto=$(nikto -h $target >  ~/Desktop/WEB/nikto_scan.txt)
 sublister=$(sublist3r -d $target >  ~/Desktop/WEB/sublister.txt)
-echo "this might take a while...................................................."
+echo " "
+echo "this might take a while....................................................
+please do not cancel................................................."
 echo "$nslookup"
 echo "$whois"
 echo "$nikto"
@@ -32,7 +34,7 @@ echo "$sublister"
 echo "would you like to move on with nmap (y/n)?"
 read enum
 if [[ $enum == "y" ]]; then
-	nmap=$(nmap -A -T4 -p- $1 >  ~/Desktop/WEB/nmap.txt &)
+	nmap=$(nmap -sS -A -T4 -p- $1 >  ~/Desktop/WEB/nmap.txt &)
 	echo "$nmap"
 else
 	echo "Goodbye"
