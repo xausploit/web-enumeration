@@ -23,7 +23,9 @@ whois=$(whois $target > whois.txt)
 echo "$nslookup" &
 sleep 2
 echo "$whois" &
-sleep 5
+sleep 3
+echo "Kindly wait a lil bit,maybe 10sec"
+sleep 6 
 echo "would you like to move on with enumeration? (y/n)?"
 read enum
 if [[ $enum == "y" ]]; then
@@ -37,6 +39,7 @@ if [[ $enum == "y" ]]; then
 		1)
 			nmap=$(nmap -A -T4 -p- $1 > nmap.txt &)
 			echo "$nmap"
+			sleep 15
 			;;
 		2)
 			echo "Kindly check out nikto on their platform"	
@@ -51,4 +54,6 @@ if [[ $enum == "y" ]]; then
 else
 	echo "Goodbye"
 	exit 1	
-fi		
+fi
+sleep 4
+exit 1
