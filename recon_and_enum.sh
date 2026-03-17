@@ -2,7 +2,7 @@
 echo "This web recon runs nikto,sublist3r,nslookup,whois...nmap on the target is optional"
 user=$(whoami)
 echo "Good day,who are you gonna be logged in as today?
-1 - echo '$user'
+1 - $user
 2 - root"
 read login
 if [[ $login == 1 ]]; then
